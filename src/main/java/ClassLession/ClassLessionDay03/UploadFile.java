@@ -1,0 +1,28 @@
+package ClassLession.ClassLessionDay03;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class UploadFile   {
+    public static void main(String[] args) {
+//        Khởi tạo WebDriver()
+        WebDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
+//        Mở trang web
+        driver.get("https://demo.guru99.com/test/upload/");
+//        Đường dẫn tệp cần tải lên
+        String filePath = "C:/Autotest27/EMPLOYEE.xlsx";
+//        Tìm phần tử input type="file" và gửi đường dẫn tệp
+        WebElement uploadField= driver.findElement(By.id("uploadfile_0"));
+        uploadField.sendKeys(filePath);
+//        Đồng ý với các điều khoản
+        WebElement termsCheckbox = driver.findElement(By.id("terms"));
+        termsCheckbox.click();
+//        Nhấn vào nút Upload
+        WebElement uploadButton = driver.findElement(By.id("submitbutton"));
+        uploadButton.click();
+    }
+
+}
