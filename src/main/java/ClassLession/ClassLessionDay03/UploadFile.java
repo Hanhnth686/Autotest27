@@ -7,22 +7,29 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class UploadFile   {
     public static void main(String[] args) {
-//        Khởi tạo WebDriver()
+        // Khởi tạo WebDriver()
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
-//        Mở trang web
+        // Mở trang web
         driver.get("https://demo.guru99.com/test/upload/");
-//        Đường dẫn tệp cần tải lên
+        // Đường dẫn tệp cần tải lên
         String filePath = "C:/Autotest27/EMPLOYEE.xlsx";
-//        Tìm phần tử input type="file" và gửi đường dẫn tệp
+        // Tìm phần tử input type="file" và gửi đường dẫn tệp
         WebElement uploadField= driver.findElement(By.id("uploadfile_0"));
         uploadField.sendKeys(filePath);
-//        Đồng ý với các điều khoản
+        // Đồng ý với các điều khoản
         WebElement termsCheckbox = driver.findElement(By.id("terms"));
         termsCheckbox.click();
-//        Nhấn vào nút Upload
+        // Nhấn vào nút Upload
         WebElement uploadButton = driver.findElement(By.id("submitbutton"));
         uploadButton.click();
+        // Đợi để kiểm tra kết quả
+        Thread.sleep(5000);
+        // Lấy thông báo sau khi upload
+        WebElement resultMessage = driver.findElement(By.id("res"));
+        System.out.println("Kết quả tải lên: " + resultMessage.getText());
+        // Đóng trình duyệt
+        driver.quit();
     }
 
 }
